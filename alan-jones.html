@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alan Jones, Ph.D. — Executive Dossier</title>
+    <!-- Google Fonts for Editorial Serif and Clean Sans/Mono UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #141414;
+            --text-primary: #ededed;
+            --text-secondary: #888888;
+            --text-dim: #555555;
+            --accent-blue: #58a6ff;
+            --border-color: #222222;
+            --font-serif: 'Instrument Serif', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            padding: 0 1.5rem;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* Nav Header */
+        header {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background-color: rgba(13, 13, 13, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-primary);
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4.5rem 0 3.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 3.5rem;
+            flex-wrap: wrap-reverse;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        /* Profile Picture Enlarged */
+        .profile-img-container {
+            width: 300px;
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #30363d;
+            flex-shrink: 0;
+            background-color: var(--card-bg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        .profile-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .profile-img-container img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+        }
+
+        .hero-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 800px;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Metadata Columns */
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .meta-item .label {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .meta-item .value {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Buttons */
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 1.75rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--text-primary);
+            color: var(--bg-color);
+            border: 1px solid var(--text-primary);
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background-color: #cccccc;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        /* Section Commons */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-heading {
+            font-family: var(--font-serif);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Impact / Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .stat-card .number {
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .stat-card .description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Summary / Content Block */
+        .summary-text {
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            max-width: 920px;
+            margin-bottom: 1.75rem;
+            line-height: 1.7;
+        }
+
+        .quote-box {
+            border-left: 2px solid var(--accent-blue);
+            padding-left: 1.5rem;
+            margin: 2.5rem 0;
+            font-style: italic;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 900px;
+            line-height: 1.7;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            margin-bottom: 3.5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .exp-role {
+            font-family: var(--font-serif);
+            font-size: 1.85rem;
+            font-weight: 400;
+        }
+
+        .exp-company {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .role-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            padding: 0.25rem 0.5rem;
+            background-color: #1c2128;
+            color: var(--accent-blue);
+            border: 1px solid #30363d;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            text-transform: uppercase;
+        }
+
+        .exp-bullets {
+            list-style: none;
+        }
+
+        .exp-bullets li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #cccccc;
+            font-size: 0.95rem;
+        }
+
+        .exp-bullets li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--text-secondary);
+        }
+
+        /* Grid Layout for Education & Certifications */
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem;
+        }
+
+        .badge-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .badge {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.5rem 0.85rem;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .edu-item {
+            margin-bottom: 1.75rem;
+        }
+
+        .edu-degree {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .edu-school {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .edu-focus {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-top: 0.25rem;
+            line-height: 1.5;
+        }
+
+        /* Research Cards */
+        .research-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.75rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+
+        .research-card h3 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            header nav {
+                display: none;
+            }
+            .hero-title {
+                font-size: 3rem;
+            }
+            .exp-header {
+                flex-direction: column;
+            }
+            .two-col-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+            .profile-img-container {
+                width: 240px;
+                height: 240px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navigation Header -->
+        <header>
+            <a href="#" class="logo">Alan Jones, Ph.D.</a>
+            <nav>
+                <ul>
+                    <li><a href="#summary">Summary</a></li>
+                    <li><a href="#impact">Impact</a></li>
+                    <li><a href="#experience">Appointments</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#competencies">Competencies</a></li>
+                    <li><a href="https://linkedin.com/in/alan-jones-phd" target="_blank">LinkedIn</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero" style="border-bottom: 1px solid var(--border-color);">
+            <div class="hero-content">
+                <span class="hero-tag">Executive Leader — Operations, AI Governance & Financial Stewardship</span>
+                <h1 class="hero-title">Alan Jones</h1>
+                <p class="hero-subtitle">Executive leader and organizational strategist bridging high-stakes federal operations, zero-metadata AI architectures, and catastrophic risk publication pipelines.</p>
+                
+                <div class="meta-grid">
+                    <div class="meta-item">
+                        <span class="label">Domain</span>
+                        <span class="value">Public Sector & AI Safety</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label">Focus</span>
+                        <span class="value">Operations & Governance</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="label">Role</span>
+                        <span class="value">COO / Founder / Advisor</span>
+                    </div>
+                </div>
+
+                <div class="cta-group">
+                    <a href="https://linkedin.com/in/alan-jones-phd" target="_blank" class="btn btn-primary">Connect on LinkedIn</a>
+                    <a href="mailto:admin@calanjonesconsulting.com?subject=White%20Paper%20Request" class="btn btn-secondary">Request White Paper</a>
+                </div>
+            </div>
+
+            <!-- Profile Picture -->
+            <div class="profile-img-container">
+                <img src="profile.jpg" alt="Alan Jones, Ph.D." onerror="this.onerror=null; this.src='profile.png';">
+            </div>
+        </section>
+
+        <!-- Impact / By the Numbers Section -->
+        <section id="impact">
+            <span class="section-label">Impact</span>
+            <h2 class="section-heading">By the Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">10+</div>
+                    <div class="description">Years Executive & Public Sector Leadership</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">$750M+</div>
+                    <div class="description">Federal Grant Portfolio (Zero Disallowed Costs)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">$150M+</div>
+                    <div class="description">Annual Budget Monitoring & Variance Control</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">20%</div>
+                    <div class="description">Project Velocity Increase via SOP Playbooks</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview / Professional Summary Section -->
+        <section id="summary">
+            <span class="section-label">Overview</span>
+            <h2 class="section-heading">Executive Dossier</h2>
+            
+            <p class="summary-text">
+                Executive leader and organizational strategist with 10+ years of progressive leadership across government, nonprofit, and frontier technology environments. Experienced building and managing high-stakes operations, overseeing large-scale federal grant portfolios, and leading cross-functional teams toward verifiable performance outcomes.
+            </p>
+            <p class="summary-text">
+                Holding a Ph.D. in Public Policy and Administration, my work operates at the intersection of operational stewardship, zero-metadata technical architecture, and pre-commitment governance frameworks. I specialize in translating complex regulatory and technical constraints into actionable organizational strategy that scales securely.
+            </p>
+
+            <div class="quote-box">
+                "The hardest balance in AI governance is acting under conditions of uncertainty vs. waiting for clear evidence. When a decision is reversible, waiting for data is prudent. When a decision is irreversible, pre-commitment protocols and verifiable containment infrastructure must be enforced from day one."
+            </div>
+        </section>
+
+        <!-- Current Appointments & Portfolio Leadership -->
+        <section id="experience">
+            <span class="section-label">Appointments</span>
+            <h2 class="section-heading">Portfolio Leadership & Directorships</h2>
+
+            <!-- Role 1: Arnaz -->
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div>
+                        <span class="exp-role">Chief Operating Officer</span>
+                        <span class="role-tag">Fractional</span>
+                    </div>
+                    <div class="exp-company">Arnaz Consulting / Oct 2025 – Present</div>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Delivered measurable operational improvements across client organizations by implementing streamlined systems that expanded team bandwidth and reduced administrative friction.</li>
+                    <li>Instituted Go/No-Go feasibility frameworks aligning internal capacity with financial risk thresholds to provide defensible decision-making structures.</li>
+                    <li>Designed executive financial dashboards, project trackers, and knowledge management systems utilizing Notion, Asana, and Airtable to automate recurring workflows without proportional overhead.</li>
+                </ul>
+            </div>
+
+            <!-- Role 2: ZMPLabs -->
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div>
+                        <span class="exp-role">Founder & Lead Security Architect</span>
+                        <span class="role-tag">Venture</span>
+                    </div>
+                    <div class="exp-company">ZMPLabs / 2024 – Present</div>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Architected local, offline AI setups utilizing Zero-Metadata Protocol and local RAG to eliminate client data exfiltration and prevent cloud model training exposure.</li>
+                    <li>Deployed pre-execution redaction pipelines in n8n that automatically strip metadata and redact sensitive PII before prompt payloads touch model layers.</li>
+                    <li>Built plug-and-play local LLM inference setups that allow teams in regulated sectors (law, healthcare, finance) to adopt AI capabilities while maintaining total, verifiable local containment.</li>
+                </ul>
+            </div>
+
+            <!-- Role 3: BASE Research -->
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div>
+                        <span class="exp-role">Interim Assistant Director</span>
+                        <span class="role-tag">Research & Pipelines</span>
+                    </div>
+                    <div class="exp-company">BASE Research / 2024 – Present</div>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Establishing research publication pipelines across Catastrophic Risk, Biosecurity, and AI Governance tracks.</li>
+                    <li>Designing submission workflows, evaluation rubrics, and practitioner-facing dissemination channels to accelerate publication timelines for critical safety research.</li>
+                    <li>Bridging technical safety research with public policy frameworks to ensure published insights reach decision-makers before capability thresholds are crossed.</li>
+                </ul>
+            </div>
+
+            <!-- Role 4: CyberTrust -->
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div>
+                        <span class="exp-role">Scrum Master / Chief Operating Officer</span>
+                        <span class="role-tag">Advisory</span>
+                    </div>
+                    <div class="exp-company">CyberTrust America / June 2024 – Present</div>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Owned the operating rhythm across a multi-organization federal initiative—running planning cadences, tracking milestones, clearing blockers, and producing executive reports.</li>
+                    <li>Developed audit-ready SOP templates and governance playbooks that codified mature workstreams, increasing project velocity by 20% across distributed teams.</li>
+                    <li>Deployed AI tools—including Claude and Gemini—as core operational infrastructure to systematize tasks and expand operational coverage.</li>
+                </ul>
+            </div>
+
+            <!-- Role 5: City of Detroit -->
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div>
+                        <span class="exp-role">Assistant Director, Reimbursement & Audit Support</span>
+                        <span class="role-tag">Public Sector</span>
+                    </div>
+                    <div class="exp-company">City of Detroit / Feb 2015 – Aug 2025</div>
+                </div>
+                <ul class="exp-bullets">
+                    <li>Oversee compliance, financial management, and operational infrastructure for a $750M+ portfolio of federally funded programs (HUD CDBG, ESG, HOME, HOPWA) with zero disallowed costs and clean audits.</li>
+                    <li>Monitored $150M+ in annual project budgets, conducting budget-to-actual variance analysis early to advise senior leadership on corrective actions and cash preservation.</li>
+                    <li>Replaced legacy manual systems with automated digital oversight infrastructure, reducing audit preparation time by 40% across 500+ active contracts.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Research & Frameworks Section -->
+        <section id="research">
+            <span class="section-label">Research</span>
+            <h2 class="section-heading">Research Tracks & Frameworks</h2>
+
+            <div class="research-card">
+                <h3>The Publication Gap: Connecting Safety Research to Policy Action</h3>
+                <p>Developing practitioner-facing publication pipelines at BASE Research to solve the evidence-to-decision delay in catastrophic risk, biosecurity, and AI governance.</p>
+            </div>
+
+            <div class="research-card">
+                <h3>Verifiable Infrastructure-Level Containment</h3>
+                <p>Designing offline, zero-metadata LLM architectures using local RAG, pre-execution prompt redaction, and quantized local inference to enforce containment without cloud data exposure.</p>
+            </div>
+
+            <div class="research-card">
+                <h3>Social Construction & Policy Design in Public Administration</h3>
+                <p>Doctoral research evaluating how policy design, political power, and social construction dictate the allocation of burdens vs. benefits in public programs and institutional decision-making.</p>
+            </div>
+
+            <div class="research-card">
+                <h3>Institutional Pre-Commitment Protocols</h3>
+                <p>Synthesizing research on <em>Holden Karnofsky's If-Then Commitments</em> and <em>METR Frontier Risk Reports</em> to create operational triggers for public-sector and enterprise AI adoption.</p>
+            </div>
+        </section>
+
+        <!-- Two Column Section: Competencies, Education & Certifications -->
+        <section id="competencies" style="border-bottom: none;">
+            <div class="two-col-grid">
+                
+                <!-- Col 1: Education & Certs -->
+                <div>
+                    <span class="section-label">Academics</span>
+                    <h2 class="section-heading" style="font-size: 2.5rem;">Education</h2>
+                    
+                    <div class="edu-item">
+                        <div class="edu-degree">Ph.D., Public Policy and Administration</div>
+                        <div class="edu-school">Walden University, 2022</div>
+                        <div class="edu-focus">Dissertation: <em>Benefits and Barriers That African American Men Experience With Financial Assistance</em> (Empirical research applying Social Construction & Policy Design Theory).</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-degree">MPA, Public Policy and Administration</div>
+                        <div class="edu-school">Walden University, 2015</div>
+                    </div>
+                    <div class="edu-item">
+                        <div class="edu-degree">B.S., Architecture</div>
+                        <div class="edu-school">University of Detroit Mercy, 2010</div>
+                    </div>
+
+                    <span class="section-label" style="margin-top: 3rem;">Credentials</span>
+                    <h2 class="section-heading" style="font-size: 2.5rem;">Certifications</h2>
+                    <div class="badge-group">
+                        <span class="badge">ISO 42001 Lead Auditor</span>
+                        <span class="badge">GRC Professional (GRCP)</span>
+                        <span class="badge">Lean Six Sigma Green Belt</span>
+                    </div>
+                </div>
+
+                <!-- Col 2: Core Competencies -->
+                <div>
+                    <span class="section-label">Expertise</span>
+                    <h2 class="section-heading" style="font-size: 2.5rem;">Competencies</h2>
+                    
+                    <ul class="exp-bullets">
+                        <li>Executive Leadership & Strategic Operations</li>
+                        <li>Catastrophic Risk & AI Governance Pipelines</li>
+                        <li>Zero-Metadata Architecture & Local Containment</li>
+                        <li>Federal Grants Stewardship ($150M+ Budget Control)</li>
+                        <li>FP&A & Executive Financial Storytelling</li>
+                        <li>Go/No-Go Feasibility & Risk Frameworks</li>
+                        <li>Board Relations & Agency Communications</li>
+                        <li>Regulatory Compliance & Audit Readiness</li>
+                        <li>AI-Integrated Workflows (Claude, Gemini, n8n, Notion)</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div>ALAN JONES, Ph.D. — Executive Dossier</div>
+            <div>admin@calanjonesconsulting.com</div>
+        </footer>
+    </div>
+
+</body>
+</html>
